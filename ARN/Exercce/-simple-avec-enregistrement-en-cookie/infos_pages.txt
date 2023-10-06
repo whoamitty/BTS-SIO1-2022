@@ -1,0 +1,7 @@
+Voici la fonction des pages :
+
+edit.php : Permet d'éditer la note ;
+enreg.php : Enregistre la note ;
+index.html : Page d'accueil ;
+supp.php : Permet de supprimer la note ;
+view.php : Permet de voir la note.

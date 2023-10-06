@@ -1,0 +1,178 @@
+Mise à jour :
+
+11/11/2012
+    Création du système de profil via la classe Profil.
+
+18/09/2012
+    General :
+    - Création du fichier config.inc.php qui contient les différentes configurations paramétrables
+    - Le flag DEFAULT_FLAG vaut maintenant NOT_NULL | NOT_EMPTY au lieu de 0 (prise en charge différente).
+        => modifiable via config.inc.php
+
+    Sécurisations :
+    - Implémentation de la sécurité SQL
+        => protection mysql_real_escape_string si chaine non numérique
+        => parcours des tableaux et protection des valeurs non numériques rencontrées
+    - Valeur par défaut de la sécurité modifié : Passe de HTML_SECURE | SQL_SECURE à SQL_SECURE. Ceci parce que la protection
+      html est principalement utile lors de la sortie utilisateurs au risque d'augmenter l'espace nécessaire dans la bdd.
+
+    Check :
+    - Ajout de la possibilité de rentrer la valeur par défaut dans le premier paramètre sur la méthode "check"
+        => Autorise la syntaxe : $userName = $post('userName')->check('anonyme');
+
+    Exceptions :
+    - Ajout de l'exception BasicCheckException qui intervient lorsqu'un filtre de type basic échoue sur une valeur (méthode validate)
+    - Ajout de la constante EXCEPTION_IF_BASIC_CHECK_ERROR qui prend un boolean en valeur. Le check basique renverra une exception si
+      EXCEPTION_IF_BASIC_CHECK_ERROR est à true.
+      => Permet de lever une exception de cette façon :
+         => $post('ND'); //Si $_POST['ND'] est vide ou non existant
+         => $post('ND', CHECK, 'pi'); //Si $_POST['ND'] n'est pas un numérique ou inférieur à 0;
+
+TerraEnv
+
+Ici sont présent les différentes classes que j'ai créé pour mon utilisation personnelle mais qui, si je les trouve viable,
+peuvent servir à une ou plusieurs personnes.
+
+Explications de l'ajout des profils :
+    Ceci est une nouvelle fonctionnalité qui permet une autre forme d'utilisation des filtres.
+    Pour faire simple :
+        - vous créez un ou plusieurs profils dans un fichiers spécifique
+        - vous chargez ce fichier dans votre applications
+        - les validations se feront des l'appel des valeurs dans le code
+
+    Voici un exemple:
+        J'ai créé dans le fichier nommé primary_types.php des filtres simples.
+        
+            $primaryTypes->check(['i', 'int'], NOT_EMPTY | NUMERIC, 'i'); 
+            Ceci créer un filtre sur les clé i et int, il va vérifier si la valeur est bien numeric et est un int.
+           
+            $primaryTypes->check(['login', 'username'], NOT_EMPTY, 's')
+                        ->advance(['login', 'username'], ['regex' => ['^[A-Za-z0-9_-]*$']]);
+            Celui ci s'applique sur les clés login et username et permet de filtrer les données qui ne sont pas des chaines
+            ou qui contiennent plus de caractère autorisées que prévu dans le code.
+
+            $formTypes->check('submit', NOT_NULL | NOT_EMPTY)
+                      ->advance('submit', [], false);
+            Ce dernier va juste vérifier que lé clé submit existe avec une valeur non null et me renvoyer false sinon.
+
+        Une fois ce fichier créé je peux l'include dans code et le charger.
+            include 'Request.php';
+            include 'Profil.php';
+            include 'profils/primary_types.php';
+
+            $post = new request('POST', 'default');
+            
+            $post->load('primary_types');
+            
+        Enfin je peux l'utiliser simplement comme cela :
+        $message = '';
+        try {
+            if ($post['userUpdate_submit']) {
+                $login = $post['user_login'];
+                $message = "Données valide";
+            }
+        } catch (Exception $exception) {
+            $message = 'Les données ne sont pas corrects';
+        }
+        
+
+    Sur le formulaire :
+        
+        <div>
+            <?php echo $message; ?>
+        </div>
+        
+        <form action="test_v2.php" method="POST">
+            <label for='user_login'>Identifiant : </label>
+            <input id="user_login" name="user_login" type="text" value="" />
+            <br />          
+            <input id="userUpdate_submit" type="submit" name="userUpdate_submit" value="envoyer" />
+        </form>
+
+        Comme vous pouvez le voir les clés que l'on a précisé dans le profil sont utilisables de deux façons.
+        Soit directement en tant que clé, soit en tant que fragment de clé. Dans ce dernier cas la clé doit être
+        composée de cette manière : text_cleProfil (user_login ou userUpdate_submit dans notre cas).
+        
+
+REQUEST :
+
+J'ai souvent été amené à devoir valider et vérifier un grand nombre de données venant de l'extérieur comme tout développeur web.
+Il s'avère que les méthodes que j'utilisais été répétitives et prenaient beaucoups trop de place pour de simple vérification à mon goût.
+
+La classe REQUEST permet donc de gérer de façon simplifiée et condensée les entrée GET et POST d'un script php.
+Il permet la validation en masse des données, ces dernières étant identifiées par leur clé comme cela ce fait
+normalement avec un $_POST ou un $_GET.
+
+Cette validation se fait de plusieurs manières qui ont l'intérêt d'être simple à mettre en place et prennent moins de place.
+
+Syntax :
+$post = new REQUEST($method, $defaultFlag);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$userData = $post($keys, FLAGS, $filters);
+> $keys peut être un tableau de clé ou un simple chaine de caractère représentant une clé.
+> FLAGS sont les différents flags de disponible que l'on peut additionner via l'opérateur | (classique)
+> $filters peut être un tableau d'identifiant de filtre ou une chaine représentant un identifiant de filtre
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Quelques syntaxes possibles :
+$userData = $post([$key_1, $key_2], FLAGS | CHECK, $filter); //$filter sera effectif pour toutes les clés
+$userData = $post([$key_1, $key_2], FLAGS | CHECK, [$filter_1]); //$filter_1 ne vérifiera que $key_1, le restera passera sans filtre
+$userData = $post([$key_1, $key_2], FLAGS | CHECK, [$filter_1, $filter_2]); //$filter_1 vérifiera $key_1 et $filter_2 vérifiera $key_2
+$userData = $post($key, FLAGS, $filter);
+$userData = $post($key); //$key sera validé par rapport aux flag par défaut (NOT_NULL | NOT_EMPTY)
+
+
+Les flags de validation disponible sont :
+NOT_EMPTY       Ne valide pas les valeurs vide
+NOT_NULL        Ne valide pas les valeurs null | inexistante
+NUMERIC         Ne valide pas les valeurs qui ne sont pas des nombres
+CHECK           Fait appel aux filtres
+
+Les flags de sécurité disponibles sont
+HTML_SECURE     Transforme la chaine en modifiant les tags html
+
+Les filtres disponibles (utilisable si le FLAG CHECK est présent) sont :
+i   integer             Vérifie si la valeur est un entier
+ip  positive integer    Vérifie si la valeur est un entier positif
+in  negative integer    Vérifie si la valeur est un entier négatif
+f   float               Vérifie si la valeur est un nombre à virgule
+fp  positive float      Vérifie si la valeur est un nombre à virgule positif
+fn  negative float      Vérifie si la valeur est un nombre à virgule négatif
+s   string              Vérifie si la valeur est une chaine (supérieur à 1 caractère)
+c   character           Vérifie si la valeur est un caractère (1 caractère)
+b   boolean             Vérifie si la valeur est un boolean
+m   mail                Vérifie si la valeur est un mail valide
+d   date                Vérifie si la valeur est une date valide
+
+Exemple :
+$post = new REQUEST('POST');
+
+$userDataNumeric = $post(['ND', 'age'], NUMERIC)->isValid(); //On verifie si $_POST['ND'] et $_POST['age'] sont des valeurs numérique;
+
+$userDataTest = $post(['ND', 'age'], CHECK, 'pi')->isValid(); //On verifie si $_POST['ND'] et $_POST['age'] sont des entiers positifs
+
+$dataNews = $post(['ND', 'titre', 'contenu'],
+                   NOT_EMPTY | CHECK,
+                   ['pi', 's', 's'])->isValid();
+//On verifie que les $_POST['ND'], $_POST['titre'] et $_POST['contenu'] ne sont pas vide (ou null).
+// En même temps on sécurise les valeurs contenant du html
+// Et enfin on valide les données à partir de filtre : ND doit etre un entier positif et le reste doit etre des chaine
+
+//VERIFICATION AVANCEE
+try {
+    $post->shield_on(HTML_SECURE, ['titre', 'contenu']); //On active le bouclier seulement pour les valeur titre et contenu
+    if ($post(['ND', 'age', 'titre', 'contenu', 'password'], DEFAULT_FLAG | CHECK, ['pi', 'pi', 's', 's', 's'])->isValid()) {
+        $ND_AGE = $post(['ND', 'age'])->check(['i_range' => [0, 60]], [5, 10]); //On valide les données numérique, si non valide on remplace par les valeurs par défaut
+        $titre = $post('titre')->validate(['size' => [3, 255]]); //On valide le titre avec la taille, si non valide une exception est lancée
+        $contenu = $post['contenu']; //On récupère simplement la valeur contenu dans $_POST['contenu'] après l'avoir sécurisé
+        echo var_dump($ND_AGE);
+        echo ':'.$titre;
+        echo '<br />contenu : '.$contenu;
+    } else {
+        var_dump($post->get_errors_list());
+    }
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
